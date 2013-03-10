@@ -1,3 +1,5 @@
+require 'configga/store'
+
 module Configga
 
   ##

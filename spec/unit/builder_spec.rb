@@ -19,6 +19,10 @@ describe Configga::Builder do
       expect(result[:database][:creds][:pass]).to eql('secret')
     end
 
+    it 'should handle booleans' do
+      expect(result[:async]).to be_false
+    end
+
     it 'should store hashes as hashes' do
       expect(result[:database].class).to eql(Configga::Store)
       expect(result[:creds].class).to    eql(Hash)
@@ -30,6 +34,7 @@ describe Configga::Builder do
       described_class.new do
         working_folder '/srv'
         timeout 30
+        async false
         creds(user: 'admin', pass: 'secret')
 
         database do
@@ -51,6 +56,7 @@ describe Configga::Builder do
 
       inst.working_folder = '/srv'
       inst.timeout = 30
+      inst.async = false
       inst.creds = { user: 'admin', pass: 'secret' }
 
       inst.database.creds.user = 'admin'

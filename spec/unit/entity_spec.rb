@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Configga::Entity do
   let(:instance) { Configga::Entity.create(hash) }
+
   let(:hash) do
     Configga::Store.new({
       working_folder: '/srv',

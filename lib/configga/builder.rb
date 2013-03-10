@@ -44,7 +44,7 @@ module Configga
       key   = normalize_method_name(method_name)
       value = normalize_arguments(args, &block)
 
-      result = attrs[key] ||= (value || Store.new)
+      result = attrs[key] ||= (args.length > 0 || block_given? ? value : Store.new)
       result.class == Store ? self.class.new(result) : result
     end
 
@@ -84,7 +84,7 @@ module Configga
       if block_given?
         self.class.new(&block).attrs
       else
-        args.length < 2 ? args[0] : args
+        args.length > 1 ? args : args[0]
       end
     end
 
