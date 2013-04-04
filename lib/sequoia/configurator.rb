@@ -1,6 +1,6 @@
-require 'configga/configurable'
+require 'sequoia/configurable'
 
-module Configga
+module Sequoia
   class Configurator
     include Configurable
   end

@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe Configga::Entity do
-  let(:instance) { Configga::Entity.create(hash) }
+describe Sequoia::Entity do
+  let(:instance) { Sequoia::Entity.create(hash) }
 
   let(:hash) do
-    Configga::Store.new({
+    Sequoia::Store.new({
       working_folder: '/srv',
-      database: Configga::Store.new(name: 'test_db', user: 'inferno'),
+      database: Sequoia::Store.new(name: 'test_db', user: 'inferno'),
       creds: { user: 'admin', pass: 'secret' }
     })
   end

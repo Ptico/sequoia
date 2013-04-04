@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Configga::Builder do
+describe Sequoia::Builder do
 
   let(:result) { instance.attrs }
 
@@ -24,7 +24,7 @@ describe Configga::Builder do
     end
 
     it 'should store hashes as hashes' do
-      expect(result[:database].class).to eql(Configga::Store)
+      expect(result[:database].class).to eql(Sequoia::Store)
       expect(result[:creds].class).to    eql(Hash)
     end
   end

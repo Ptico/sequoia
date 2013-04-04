@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe Configga::Store do
+describe Sequoia::Store do
   let(:instance) { described_class.new(hash) }
   let(:hash) do
     {
       working_folder: '/srv',
       database: { name: 'test_db' },
-      creds: Configga::Store.new(name: 'admin')
+      creds: Sequoia::Store.new(name: 'admin')
     }
   end
 
@@ -19,7 +19,7 @@ describe Configga::Store do
   end
 
   it 'should merge nested stores' do
-    instance.deep_merge(Configga::Store.new(creds: Configga::Store.new(pass: 'secret')))
+    instance.deep_merge(Sequoia::Store.new(creds: Sequoia::Store.new(pass: 'secret')))
     expect(instance[:creds][:name]).to eql('admin')
     expect(instance[:creds][:pass]).to eql('secret')
   end

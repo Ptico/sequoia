@@ -1,6 +1,6 @@
-require 'configga/store'
+require 'sequoia/store'
 
-module Configga
+module Sequoia
 
   ##
   # Class: Resulting storage of configuration data
@@ -12,7 +12,7 @@ module Configga
     ##
     # Factory: Create new instance of entity
     #
-    # Returns: {Configga::Entity}
+    # Returns: {Sequoia::Entity}
     def self.create(store)
       keys = store.keys
 

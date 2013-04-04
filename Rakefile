@@ -2,7 +2,7 @@ require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
 require 'reek/rake/task'
 
-desc 'Test configga'
+desc 'Test sequoia'
 RSpec::Core::RakeTask.new('spec')
 
 namespace :metrics do

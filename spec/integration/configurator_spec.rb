@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Configga::Configurator do
+describe Sequoia::Configurator do
   let(:instance) { described_class.new }
 
   let(:config) do

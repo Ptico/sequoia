@@ -1,4 +1,4 @@
-module Configga
+module Sequoia
 
   ##
   # Class: Config builder
@@ -19,7 +19,7 @@ module Configga
     # Private: Initialize a new Builder
     #
     # Params:
-    # - attrs {Configga::Store} For internal use only (optional)
+    # - attrs {Sequoia::Store} For internal use only (optional)
     #
     # Yields: block with key-value definitions
     #

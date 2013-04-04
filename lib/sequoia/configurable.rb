@@ -1,6 +1,6 @@
-require 'configga/entity'
+require 'sequoia/entity'
 
-module Configga
+module Sequoia
   ##
   # Module: Configurable mixin
   #
@@ -14,7 +14,7 @@ module Configga
     #
     # Yields: block with key-value definitions
     #
-    # Returns: {Configga::Builder} builder instance
+    # Returns: {Sequoia::Builder} builder instance
     #
     def configure(env=:default, &block)
       environment = @config_attributes[env.to_sym] ||= Store.new
@@ -28,7 +28,7 @@ module Configga
     # Params:
     # - env {Symbol} Environment to build
     #
-    # Returns: {Configga::Entity} builded configuration object
+    # Returns: {Sequoia::Entity} builded configuration object
     #
     def build(env=nil)
       result = @config_attributes[:default]
