@@ -22,7 +22,32 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+tree = Sequoia::Configurator.new
+tree.configure do
+  working_folder '/srv'
+  timeout 30
+  database do
+    adapter  'postgres'
+    user     'app'
+    password 'secret'
+  end
+end
+
+instance.configure :production do
+  timeout 60
+  cache true
+  database do
+    user 'root'
+  end
+end
+
+config = instance.build(:production)
+
+config.working_folder #=> '/srv'
+config.timeout #=> 60
+config.database.user #=> 'root'
+```
 
 ## Contributing
 
