@@ -1,6 +1,10 @@
 # Sequoia
 
-TODO: Write a gem description
+Sequoia is a gem for building environment-aware structures like configs, translations etc.
+
+- [![Build Status](https://travis-ci.org/Ptico/sequoia.png)](https://travis-ci.org/Ptico/sequoia)
+- [![Code Climate](https://codeclimate.com/github/Ptico/sequoia.png)](https://codeclimate.com/github/Ptico/sequoia)
+
 
 ## Installation
 

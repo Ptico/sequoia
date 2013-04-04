@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Sequoia::VERSION
   spec.authors       = ['Andrey Savchenko']
   spec.email         = ['andrey@aejis.eu']
-  spec.summary       = %q{Yet another configuration management gem}
-  spec.description   = %q{Super-duper fast, environment-aware and dead-simple configuration manager}
+  spec.summary       = %q{Gem for building data structures}
+  spec.description   = %q{Sequoia is a gem for building environment-aware structures like configs, translations etc.}
   spec.homepage      = 'https://github.com/Ptico/sequoia'
   spec.license       = 'MIT'
 
