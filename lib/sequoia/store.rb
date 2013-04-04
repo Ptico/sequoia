@@ -30,5 +30,9 @@ module Sequoia
       super(nil)
       self.merge!(hash)
     end
+
+    def method_missing(method_name, *args, &block)
+      has_key?(method_name) ? self[method_name] : super
+    end
   end
 end

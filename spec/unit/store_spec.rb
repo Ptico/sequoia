@@ -14,6 +14,10 @@ describe Sequoia::Store do
     expect(instance[:working_folder]).to eql('/srv')
   end
 
+  it 'should have access via method as well as via []' do
+    expect(instance.working_folder).to eql('/srv')
+  end
+
   it 'should set nested hashes' do
     expect(instance[:database]).to be_a(Hash)
   end
