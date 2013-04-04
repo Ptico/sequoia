@@ -24,6 +24,11 @@ module Sequoia
     # Yields: block with key-value definitions
     #
     def initialize(attrs=Store.new, &block)
+      skip_undef = [:block_given?]
+      (private_methods - private_methods(false) - skip_undef).sort.each do |m|
+        self.class.send :undef_method, m
+      end
+
       @attrs = attrs
 
       instance_eval(&block) if block_given?
