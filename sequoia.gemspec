@@ -6,8 +6,8 @@ require 'sequoia/version'
 Gem::Specification.new do |spec|
   spec.name          = 'sequoia'
   spec.version       = Sequoia::VERSION
-  spec.authors       = ['Andrey Savchenko']
-  spec.email         = ['andrey@aejis.eu']
+  spec.authors       = ['Andrey Savchenko', 'Dima Lunich']
+  spec.email         = ['andrey@aejis.eu', 'dima.lunich@gmail.com']
   spec.summary       = %q{Gem for building data structures}
   spec.description   = %q{Sequoia is a gem for building environment-aware structures like configs, translations etc.}
   spec.homepage      = 'https://github.com/Ptico/sequoia'
