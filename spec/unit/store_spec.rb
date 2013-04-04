@@ -19,7 +19,7 @@ describe Sequoia::Store do
   end
 
   it 'should merge nested stores' do
-    instance.deep_merge(Sequoia::Store.new(creds: Sequoia::Store.new(pass: 'secret')))
+    instance.deep_merge!(Sequoia::Store.new(creds: Sequoia::Store.new(pass: 'secret')))
     expect(instance[:creds][:name]).to eql('admin')
     expect(instance[:creds][:pass]).to eql('secret')
   end
