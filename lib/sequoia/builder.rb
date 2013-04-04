@@ -6,12 +6,20 @@ module Sequoia
   # Yields the block with definitions and then build keys and values
   # Also works as a chainable builder
   #
-  class Builder
-
+  class Builder < BasicObject
     ##
     # Storage for builded attributes
     #
     attr_reader :attrs
+
+    ##
+    # Public: Returns the class of +obj+.
+    #
+    # This method must always be called with an explicit receiver, as +class+ is also a reserved word in Ruby.
+    #
+    def class
+      Builder
+    end
 
   private
 
@@ -24,14 +32,8 @@ module Sequoia
     # Yields: block with key-value definitions
     #
     def initialize(attrs=Store.new, &block)
-      skip_undef = [:block_given?]
-      (private_methods - private_methods(false) - skip_undef).sort.each do |m|
-        self.class.send :undef_method, m
-      end
-
       @attrs = attrs
-
-      instance_eval(&block) if block_given?
+      instance_eval(&block) if ::Kernel.block_given?
     end
 
     ##
@@ -49,8 +51,8 @@ module Sequoia
       key   = normalize_method_name(method_name)
       value = normalize_arguments(args, &block)
 
-      result = attrs[key] ||= (args.length > 0 || block_given? ? value : Store.new)
-      result.class == Store ? self.class.new(result) : result
+      result = attrs[key] ||= (args.length > 0 || ::Kernel.block_given? ? value : Store.new)
+      result.is_a?(Store) ? self.class.new(result) : result
     end
 
     ##
@@ -86,7 +88,7 @@ module Sequoia
     #          array of arguments if args.length > 1 or nil
     #
     def normalize_arguments(args, &block)
-      if block_given?
+      if ::Kernel.block_given?
         self.class.new(&block).attrs
       else
         args.length > 1 ? args : args[0]
