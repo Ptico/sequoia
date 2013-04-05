@@ -32,7 +32,7 @@ module Sequoia
     #
     def build(env=nil)
       result = @config_attributes[:default]
-      result.deep_merge(@config_attributes[env.to_sym]) if env
+      result.deep_merge!(@config_attributes[env.to_sym]) if env
       Entity.create(result)
     end
 
