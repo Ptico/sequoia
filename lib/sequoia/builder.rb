@@ -13,9 +13,9 @@ module Sequoia
     attr_reader :attrs
 
     ##
-    # Public: Returns the class of +obj+.
+    # Returns the class of object
     #
-    # This method must always be called with an explicit receiver, as +class+ is also a reserved word in Ruby.
+    # This method must always be called with an explicit receiver, as `class` is also a reserved word in Ruby
     #
     def class
       Builder

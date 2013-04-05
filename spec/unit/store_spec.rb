@@ -23,4 +23,10 @@ describe Sequoia::Store do
     expect(instance[:creds][:name]).to eql('admin')
     expect(instance[:creds][:pass]).to eql('secret')
   end
+
+  it 'should rewrite hash' do
+    instance.deep_merge!(database: { user: 'postgres' })
+    expect(instance[:database][:user]).to eql('postgres')
+    expect(instance[:database][:name]).to be_nil
+  end
 end

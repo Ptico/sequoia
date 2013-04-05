@@ -1,3 +1,5 @@
+require 'pry'
+
 module Sequoia
   ##
   # Class: Simple container to store internal config
@@ -8,7 +10,7 @@ module Sequoia
 
     def deep_merge!(store)
       store.each_pair do |key, value|
-        if self[key].is_a?(Store) && value.is_a?(Store)
+        if self[key].is_a?(Store) && value.kind_of?(Hash)
           self[key].deep_merge!(value)
         else
           self[key] = value
