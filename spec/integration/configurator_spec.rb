@@ -6,6 +6,7 @@ describe Sequoia::Configurator do
   let(:config) do
     instance.configure do
       working_folder '/srv'
+      puts 22
       timeout 30
       database do
         adapter 'postgres'
@@ -41,6 +42,7 @@ describe Sequoia::Configurator do
     it 'should build config' do
       expect(result.working_folder).to eql('/srv')
       expect(result.timeout).to eql(30)
+      expect(result.puts).to eql(22)
     end
   end
 
