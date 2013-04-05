@@ -21,6 +21,13 @@ module Sequoia
       Builder
     end
 
+    ##
+    # Of course we respond to any key name
+    #
+    def respond_to?(*)
+      true
+    end
+
   private
 
     ##
@@ -53,13 +60,6 @@ module Sequoia
 
       result = attrs[key] ||= (args.length > 0 || ::Kernel.block_given? ? value : Store.new)
       result.is_a?(Store) ? self.class.new(result) : result
-    end
-
-    ##
-    # Private: Of course we respond to any key name
-    #
-    def respond_to_missing?(*)
-      true
     end
 
     ##

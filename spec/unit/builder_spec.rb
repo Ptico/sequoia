@@ -67,5 +67,9 @@ describe Sequoia::Builder do
     end
 
     it_behaves_like 'block_attributes'
+
+    it 'should respond to any method' do
+      expect(instance).to respond_to(:qqeeellzmls)
+    end
   end
 end
