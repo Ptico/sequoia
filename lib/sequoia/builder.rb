@@ -28,6 +28,15 @@ module Sequoia
       true
     end
 
+    ##
+    # Represent builder as string
+    #
+    def to_s
+      "#<#{self.class}> attrs=#{attrs}"
+    end
+    alias :inspect :to_s
+    alias :pretty_inspect :to_s
+
   private
 
     ##

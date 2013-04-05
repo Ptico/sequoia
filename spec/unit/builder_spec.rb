@@ -2,7 +2,16 @@ require 'spec_helper'
 
 describe Sequoia::Builder do
 
-  let(:result) { instance.attrs }
+  let(:result)   { instance.attrs }
+  let(:instance) { described_class.new }
+
+  it 'should respond to any method' do
+    expect(instance).to respond_to(:qqeeellzmls)
+  end
+
+  it '#to_s should return string' do
+    expect(instance.to_s.class).to eql(String)
+  end
 
   shared_examples 'block_attributes' do
     it 'should set values' do
@@ -67,9 +76,5 @@ describe Sequoia::Builder do
     end
 
     it_behaves_like 'block_attributes'
-
-    it 'should respond to any method' do
-      expect(instance).to respond_to(:qqeeellzmls)
-    end
   end
 end

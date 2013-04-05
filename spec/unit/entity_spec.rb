@@ -24,6 +24,15 @@ describe Sequoia::Entity do
     expect(instance.creds[:user]).to eql('admin')
   end
 
+  it 'should converts to hash' do
+    expect(instance.to_hash).to be_a(Hash)
+  end
+
+  it 'should be inspectable' do
+    expect(instance.inspect).to start_with('{')
+    expect(instance.pretty_inspect).to start_with('{')
+  end
+
   context 'as object' do
     it 'should get keys' do
       expect(instance.working_folder).to eql('/srv')
