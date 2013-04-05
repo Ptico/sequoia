@@ -14,12 +14,23 @@ describe Sequoia::Store do
     expect(instance[:working_folder]).to eql('/srv')
   end
 
+  it 'should have access via method as well as via []' do
+    expect(instance.working_folder).to eql('/srv')
+  end
+
   it 'should set nested hashes' do
     expect(instance[:database]).to be_a(Hash)
   end
 
   it 'should merge nested stores' do
     instance.deep_merge!(Sequoia::Store.new(creds: Sequoia::Store.new(pass: 'secret')))
+    expect(instance[:creds][:name]).to eql('admin')
+    expect(instance[:creds][:pass]).to eql('secret')
+  end
+
+  it 'should merge nested hash' do
+    instance.deep_merge!(Sequoia::Store.new(creds: { pass: 'secret' }))
+    expect(instance[:creds]).to be_instance_of(Sequoia::Store)
     expect(instance[:creds][:name]).to eql('admin')
     expect(instance[:creds][:pass]).to eql('secret')
   end

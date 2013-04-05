@@ -8,7 +8,7 @@ module Sequoia
 
     def deep_merge!(store)
       store.each_pair do |key, value|
-        if self[key].is_a?(Store) && value.is_a?(Store)
+        if self[key].is_a?(Store) && value.is_a?(Hash)
           self[key].deep_merge!(value)
         else
           self[key] = value
@@ -29,6 +29,10 @@ module Sequoia
     def initialize(hash={})
       super(nil)
       self.merge!(hash)
+    end
+
+    def method_missing(method_name, *args, &block)
+      has_key?(method_name) ? self[method_name] : super
     end
   end
 end
