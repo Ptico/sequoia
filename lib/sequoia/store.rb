@@ -1,5 +1,3 @@
-require 'pry'
-
 module Sequoia
   ##
   # Class: Simple container to store internal config
