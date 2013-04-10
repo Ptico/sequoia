@@ -64,11 +64,14 @@ module Sequoia
     # Yields: Block with nested definitions
     #
     def method_missing(method_name, *args, &block)
-      key   = normalize_method_name(method_name)
-      value = normalize_arguments(args, &block)
+      key = normalize_method_name(method_name)
 
-      result = attrs[key] ||= (args.length > 0 || ::Kernel.block_given? ? value : Store.new)
-      result.is_a?(Store) ? self.class.new(result) : result
+      if args.length > 0
+        attrs[key] = args.length > 1 ? args : args[0]
+      else
+        attrs[key] ||= Store.new
+        self.class.new(attrs[key], &block)
+      end
     end
 
     ##
@@ -83,25 +86,6 @@ module Sequoia
       method_string = method_name.to_s
       method_string.chop! if method_string.end_with?('=')
       method_string.to_sym
-    end
-
-    ##
-    # Private: Get value for assignment
-    #
-    # Params:
-    # - args {Array} Array of arguments
-    #
-    # Yields: Block with nested definitions
-    #
-    # Returns: Result of nested Builder#attrs or first argument from args or
-    #          array of arguments if args.length > 1 or nil
-    #
-    def normalize_arguments(args, &block)
-      if ::Kernel.block_given?
-        self.class.new(&block).attrs
-      else
-        args.length > 1 ? args : args[0]
-      end
     end
 
   end

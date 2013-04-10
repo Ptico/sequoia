@@ -27,8 +27,7 @@ module Sequoia
     # - hash {Hash} Hash object to convert
     #
     def initialize(hash={})
-      super(nil)
-      self.merge!(hash)
+      merge!(hash)
     end
   end
 end

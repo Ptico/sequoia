@@ -2,19 +2,24 @@ require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
 require 'reek/rake/task'
 
+begin
+  require 'mutant'
+rescue LoadError
+end
+
 task :default => :spec
 
 desc 'Test sequoia'
 RSpec::Core::RakeTask.new('spec')
 
-namespace :metrics do
-  desc 'Generate code coverage'
-  task :coverage do
-    ENV['COVERAGE'] = 'true'
-    Rake::Task['spec'].execute
-  end
+desc 'Generate code coverage'
+task :coverage do
+  ENV['COVERAGE'] = 'true'
+  Rake::Task['spec'].execute
+end
 
-  Reek::Rake::Task.new do |reek|
-    reek.reek_opts = '--quiet'
-  end
+desc 'Run mutation tests'
+task :mutant, :namespace do |t, args|
+  args.with_defaults(namespace: '::Sequoia')
+  Mutant::CLI.run(%W(-I lib -r sequoia --rspec-dm2 #{args[:namespace]}))
 end

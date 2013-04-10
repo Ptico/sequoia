@@ -17,7 +17,7 @@ module Sequoia
     # Returns: {Sequoia::Builder} builder instance
     #
     def configure(env=:default, &block)
-      environment = @config_attributes[env.to_sym] ||= Store.new
+      environment = config_attributes[env.to_sym] ||= Store.new
 
       Builder.new(environment, &block)
     end
@@ -31,16 +31,18 @@ module Sequoia
     # Returns: {Sequoia::Entity} builded configuration object
     #
     def build(env=nil)
-      result = @config_attributes[:default]
-      result.deep_merge!(@config_attributes[env.to_sym]) if env
+      result = config_attributes[:default]
+      result.deep_merge!(config_attributes[env.to_sym]) if env
       Entity.create(result)
     end
 
-  private
+  protected
 
-    def initialize(*)
-      @config_attributes = { default: Store.new }
-      super
+    ##
+    # Config environments storage
+    #
+    def config_attributes
+      @config_attributes ||= { default: Store.new }
     end
 
   end

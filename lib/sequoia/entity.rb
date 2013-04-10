@@ -13,14 +13,18 @@ module Sequoia
     # Factory: Create new instance of entity
     #
     # Returns: {Sequoia::Entity}
-    def self.create(store)
+    def self.create(store=Store.new)
       keys = store.keys
 
       values = store.values.map do |value|
         value.class == Store ? create(value) : value
       end
 
-      new(*keys).new(*values)
+      if keys.any?
+        new(*keys).new(*values).freeze
+      else
+        Object.new.freeze
+      end
     end
 
     ##
@@ -49,16 +53,6 @@ module Sequoia
     #
     def pretty_inspect
       PP.pp(to_hash, '')
-    end
-
-  private
-
-    ##
-    # Private: Initialize and freeze the struct class
-    #
-    def initialize(*)
-      super
-      freeze
     end
 
   end
