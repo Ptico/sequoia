@@ -34,7 +34,7 @@ tree.configure do
   end
 end
 
-instance.configure :production do
+tree.configure :production do
   timeout 60
   cache true
   database do

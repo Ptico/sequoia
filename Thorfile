@@ -22,7 +22,7 @@ class Default < Thor
   desc 'coverage [TYPE]', 'Generate code coverage'
   def coverage(type=nil)
     ENV['COVERAGE'] = 'true'
-    spec(type)
+    Default.new.spec(type)
   end
 
   desc 'mutant [NAMESPACE]', 'Run mutation tests for NAMESPACE'
