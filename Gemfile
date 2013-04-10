@@ -5,4 +5,4 @@ gemspec
 
 gem 'pry'
 gem 'pelusa', platforms: :rbx
-gem 'mutant'
+gem 'mutant', platforms: [:mri_19, :rbx]
