@@ -1,9 +1,7 @@
 $:.unshift File.expand_path("../lib", __FILE__)
 
+require 'thor'
 require 'sequoia/version'
-require 'bundler'
-require 'rspec/core/rake_task'
-require 'thor/rake_compat'
 
 begin
   require 'mutant'
@@ -11,9 +9,6 @@ rescue LoadError
 end
 
 class Default < Thor
-  include Thor::RakeCompat
-  Bundler::GemHelper.install_tasks
-
   desc 'spec [TYPE]', 'Run RSpec code examples (integration, unit or all)'
   def spec(type=nil)
     exec "rspec --color spec/#{type}"
@@ -22,7 +17,7 @@ class Default < Thor
   desc 'coverage [TYPE]', 'Generate code coverage'
   def coverage(type=nil)
     ENV['COVERAGE'] = 'true'
-    Default.new.spec(type)
+    spec(type)
   end
 
   desc 'mutant [NAMESPACE]', 'Run mutation tests for NAMESPACE'
@@ -32,16 +27,18 @@ class Default < Thor
 
   desc 'build', "Build sequoia-#{Sequoia::VERSION}.gem into the pkg directory"
   def build
-    Rake::Task['build'].execute
+    Bundler::GemHelper.new.build_gem
   end
 
   desc 'install', "Build and install sequoia-#{Sequoia::VERSION}.gem into system gems"
   def install
-    Rake::Task['install'].execute
+    helper = Bundler::GemHelper.new
+    helper.install_gem(helper.build_gem)
   end
 
   desc 'release', "Create tag v#{Sequoia::VERSION} and build and push sequoia-#{Sequoia::VERSION}.gem to Rubygems"
   def release
-    Rake::Task['release'].execute
+    helper = Bundler::GemHelper.new
+    helper.release_gem(helper.build_gem)
   end
 end
