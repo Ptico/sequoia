@@ -1,6 +1,5 @@
 $:.unshift File.expand_path("../lib", __FILE__)
 
-require 'thor'
 require 'sequoia/version'
 
 begin
@@ -21,8 +20,8 @@ class Default < Thor
   end
 
   desc 'mutant [NAMESPACE]', 'Run mutation tests for NAMESPACE'
-  def mutant(namespace=nil)
-    Mutant::CLI.run(%W(-I lib -r sequoia --rspec-dm2 ::Sequoia#{namespace}))
+  def mutant(namespace='*')
+    Mutant::CLI.run(%W(--include lib --require sequoia ::Sequoia#{namespace} --rspec))
   end
 
   desc 'build', "Build sequoia-#{Sequoia::VERSION}.gem into the pkg directory"

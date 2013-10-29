@@ -37,4 +37,30 @@ describe Sequoia::Store, '#deep_merge!' do
       expect(subject[:database][:name]).to be_nil
     end
   end
+
+  context 'nested hash and store' do
+    let(:secondary_hash) { Sequoia::Store.new(database: Sequoia::Store.new(user: 'postgres')) }
+
+    it 'should rewrite' do
+      expect(subject[:database][:user]).to eql('postgres')
+      expect(subject[:database][:name]).to be_nil
+    end
+  end
+
+  context 'nested store and hash' do
+    let(:secondary_hash) { { creds: { pass: 'secret' } } }
+
+    it 'should merge' do
+      expect(subject[:creds][:name]).to eql('admin')
+      expect(subject[:creds][:pass]).to eql('secret')
+    end
+  end
+
+  context 'simple value' do
+    let(:secondary_hash) { { database: 'postgres://localhost/test_db' } }
+
+    it 'should rewrite' do
+      expect(subject[:database]).to eql('postgres://localhost/test_db')
+    end
+  end
 end
