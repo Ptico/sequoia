@@ -9,7 +9,7 @@ describe Sequoia::Builder, '#to_s' do
   end
 
   it 'should contain class name' do
-    expect(subject).to start_with('#<Sequoia::Builder>')
+    expect(subject).to start_with('#<Sequoia::Builder')
   end
 
   it 'should contain attrs hash' do

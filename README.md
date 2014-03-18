@@ -42,7 +42,7 @@ tree.configure :production do
   end
 end
 
-config = instance.build(:production)
+config = tree.build(:production)
 
 config.working_folder #=> '/srv'
 config.timeout #=> 60

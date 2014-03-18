@@ -32,7 +32,7 @@ module Sequoia
     # Represent builder as string
     #
     def to_s
-      "#<Sequoia::Builder> attrs=#{attrs}"
+      "#<Sequoia::Builder attrs=#{attrs}>"
     end
     alias :inspect :to_s
     alias :pretty_inspect :to_s
