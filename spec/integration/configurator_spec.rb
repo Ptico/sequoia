@@ -60,4 +60,12 @@ describe Sequoia::Configurator do
       expect(result.database.user).to eql('dev')
     end
   end
+
+  context 'without configured env' do
+    let(:env) { :staging }
+
+    it 'should not raise exception' do
+      expect { result }.to_not raise_error
+    end
+  end
 end

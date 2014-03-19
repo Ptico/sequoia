@@ -17,7 +17,7 @@ module Sequoia
     # Returns: {Sequoia::Builder} builder instance
     #
     def configure(env=:default, &block)
-      environment = config_attributes[env.to_sym] ||= Store.new
+      environment = config_attributes[env.to_sym]
 
       Builder.new(environment, &block)
     end
@@ -42,7 +42,7 @@ module Sequoia
     # Config environments storage
     #
     def config_attributes
-      @config_attributes ||= { default: Store.new }
+      @config_attributes ||= Hash.new { |hash, key| hash[key] = Store.new }
     end
 
   end
