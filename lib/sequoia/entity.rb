@@ -55,5 +55,11 @@ module Sequoia
       PP.pp(to_hash, '')
     end
 
+    ##
+    # Do not raise exceptions when key not found
+    def method_missing(*)
+      return nil
+    end
+
   end
 end
