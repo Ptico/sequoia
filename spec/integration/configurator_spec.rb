@@ -34,7 +34,7 @@ describe Sequoia::Configurator do
     instance
   end
 
-  let(:result) { config.build(env) }
+  let(:result) { config.build_config(env) }
 
   context 'without env' do
     let(:env) { nil }
@@ -52,7 +52,7 @@ describe Sequoia::Configurator do
     it 'should merge config' do
       expect(result.working_folder).to eql('/srv')
       expect(result.timeout).to eql(60)
-      expect(result.cache).to be_false
+      expect(result.cache).to be(false)
     end
 
     it 'should merge namespaces' do

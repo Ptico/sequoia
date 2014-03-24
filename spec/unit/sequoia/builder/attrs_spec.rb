@@ -19,7 +19,7 @@ describe Sequoia::Builder, '#attrs' do
     end
 
     it 'should handle booleans' do
-      expect(subject[:async]).to be_false
+      expect(subject[:async]).to be(false)
     end
 
     it 'should store hashes as hashes' do

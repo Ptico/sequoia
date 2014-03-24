@@ -5,6 +5,6 @@ describe Sequoia::Builder, '#respond_to?' do
 
   it 'should respond to any method' do
     expect(instance).to respond_to(:qqeeellzmls)
-    expect(instance.respond_to?(:qqeeellzmls)).to be_true
+    expect(instance.respond_to?(:qqeeellzmls)).to be(true)
   end
 end

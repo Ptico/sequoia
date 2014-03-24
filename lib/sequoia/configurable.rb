@@ -30,11 +30,12 @@ module Sequoia
     #
     # Returns: {Sequoia::Entity} builded configuration object
     #
-    def build(env=nil)
+    def build_configuration(env=nil)
       result = config_attributes[:default]
       result.deep_merge!(config_attributes[env.to_sym]) if env
       Entity.create(result)
     end
+    alias :build_config :build_configuration
 
   protected
 
