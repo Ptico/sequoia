@@ -1,27 +1,22 @@
-# coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'sequoia/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'sequoia'
-  spec.version       = Sequoia::VERSION
-  spec.authors       = ['Andrey Savchenko', 'Dima Lunich']
-  spec.email         = ['andrey@aejis.eu', 'dima.lunich@gmail.com']
-  spec.summary       = %q{Gem for building data structures}
-  spec.description   = %q{Sequoia is a gem for building environment-aware structures like configs, translations etc.}
-  spec.homepage      = 'https://github.com/Ptico/sequoia'
+  spec.version       = Sequoia::Version::STRING
+  spec.authors       = ['Andrey Savchenko']
+  spec.email         = ['andrey@aejis.eu']
+  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
+  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.homepage      = 'TODO: Put your gem\'s website or public repo URL here.'
   spec.license       = 'MIT'
 
-  spec.files         = `git ls-files`.split($/)
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.files         = Dir['lib/**/*.rb']
+  spec.test_files    = Dir['spec/**/*.rb']
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 1.9.2'
-
-  spec.add_development_dependency 'bundler', '~> 1.3'
+  spec.add_development_dependency 'bundler', '~> 1.9'
   spec.add_development_dependency 'thor'
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'rspec', '~> 3.2.0'
 end

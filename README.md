@@ -1,16 +1,16 @@
 # Sequoia
 
-Sequoia is a gem for building environment-aware structures like configs, translations etc.
+Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/sequoia`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-- [![Build Status](https://travis-ci.org/Ptico/sequoia.png)](https://travis-ci.org/Ptico/sequoia)
-- [![Code Climate](https://codeclimate.com/github/Ptico/sequoia.png)](https://codeclimate.com/github/Ptico/sequoia)
-
+TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'sequoia'
+```ruby
+gem 'sequoia'
+```
 
 And then execute:
 
@@ -22,37 +22,24 @@ Or install it yourself as:
 
 ## Usage
 
-```ruby
-tree = Sequoia::Configurator.new
-tree.configure do
-  working_folder '/srv'
-  timeout 30
-  database do
-    adapter  'postgres'
-    user     'app'
-    password 'secret'
-  end
-end
+TODO: Write usage instructions here
 
-tree.configure :production do
-  timeout 60
-  cache true
-  database do
-    user 'root'
-  end
-end
+## Development
 
-config = tree.build_configuration(:production)
+After checking out the repo, run `bundle install` to install dependencies.
 
-config.working_folder #=> '/srv'
-config.timeout #=> 60
-config.database.user #=> 'root'
-```
+Then, run `bundle exec thor test` to run the tests.
+
+
+
+To install this gem onto your local machine, run `bundle exec thor install`.
+
+To release a new version, update the version number in `lib/version.rb`, and then run `bundle exec thor release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Bug reports and pull requests are welcome on GitHub at https://github.com/Ptico/sequoia.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
